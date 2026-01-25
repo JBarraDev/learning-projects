@@ -2,15 +2,22 @@ package com.projects.learning.dto;
 
 import com.projects.learning.domain.TransactionType;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TransactionRequestDTO {
 
     @NotBlank(message = "La descripción es obligatoria")
     private String description;
 
-    @NotNull(message = "La acntidad no puede ser nula")
+    @NotNull(message = "La cantidad no puede ser nula")
     @Positive(message = "La cantidad tiene que ser mayor que cero")
     private BigDecimal amount;
 
