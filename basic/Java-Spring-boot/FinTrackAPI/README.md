@@ -78,7 +78,7 @@ En este proyecto he puesto en práctica:
 - [ ] Manejo de tipos de datos financieros con `BigDecimal`.
 - [ ] Validaciones de Jakarta Bean Validation (`@Positive`, `@NotBlank`).
 - [ ] Gestión de excepciones personalizadas para errores 404.
-- 
+
 ---
 ## 💡 Un último detalle
 
