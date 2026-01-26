@@ -2,6 +2,7 @@ package com.projects.learning.controller;
 
 import com.projects.learning.dto.TransactionRequestDTO;
 import com.projects.learning.dto.TransactionResponseDTO;
+import com.projects.learning.dto.TransactionSummaryDTO;
 import com.projects.learning.service.TransactionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -33,4 +34,10 @@ public class TransactionController {
         transactionService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/summary")
+    public ResponseEntity<TransactionSummaryDTO> getSummary() {
+        return ResponseEntity.ok(transactionService.calculateSummary());
+    }
+
 }

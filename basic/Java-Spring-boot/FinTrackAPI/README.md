@@ -38,12 +38,12 @@ Este es el primer proyecto del nivel **Basic** en mi roadmap de aprendizaje.
 ---
 ## 📑 Documentación de la API (Endpoints)
 
-| Acción | Método | Endpoint | Descripción |
-|-----------|-----------|-----------|-----------|
-| Listar | `GET` | `/api/transactions` | Obtiene el historial completo. |
-| Crear | `POST` | `/api/transactions` | Registra un nuevo ingreso o gasto. |
-| Eliminar | `DELETE` | `/api/transactions/{id}` | Borra un registro por su ID. |
-| Resumen | `GET` | `/api/transactions/summary` |Muestra el saldo total acumulado. |
+| Acción   | Método   | Endpoint                    | Descripción                        |
+|----------|----------|-----------------------------|------------------------------------|
+| Listar   | `GET`    | `/api/transactions`         | Obtiene el historial completo.     |
+| Crear    | `POST`   | `/api/transactions`         | Registra un nuevo ingreso o gasto. |
+| Eliminar | `DELETE` | `/api/transactions/{id}`    | Borra un registro por su ID.       |
+| Resumen  | `GET`    | `/api/transactions/summary` | Muestra el saldo total acumulado.  |
 
 ### 📝 Ejemplo de JSON para POST (Crear Transacción)
 
