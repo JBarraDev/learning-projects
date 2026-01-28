@@ -21,23 +21,23 @@ El proyecto debe utilizar Maven como gestor de dependencias. Para cumplir con lo
 ## Modelo de Datos: `Transaction`
 Cada movimiento financiero debe tener los siguientes campos:
 
-| Campo         | Tipo       | Restricción                                 |
-|---------------|------------|---------------------------------------------|
-| `id`          | Long       | Autoincremental (Primary Key)               |
-| `description` | String     | Obligatorio, Máx. 100 caracteres            |
-| `amount`      | BigDecimal | Obligatorio, debe ser mayor a 0             |
-| `date`        | LocalDate  | Obligatorio (Fecha del movimiento)          |
-| `type`        | Enum       | Valores: INCOME (Ingreso) o EXPENSE (Gasto) |
-| `category`    | String     | Ejemplo: "Comida", "Sueldo", "Ocio"         |
+| Campo             | Tipo       | Restricción                                 |
+|-------------------|------------|---------------------------------------------|
+| `id`              | Long       | Autoincremental (Primary Key)               |
+| `description`     | String     | Obligatorio, Máx. 100 caracteres            |
+| `amount`          | BigDecimal | Obligatorio, debe ser mayor a 0             |
+| `date`            | LocalDate  | Obligatorio (Fecha del movimiento)          |
+| `transactionType` | Enum       | Valores: INCOME (Ingreso) o EXPENSE (Gasto) |
+| `category`        | String     | Ejemplo: "Comida", "Sueldo", "Ocio"         |
 
 ---
 ## 🛣️ Contrato de la API (Endpoints)
-| Método | Endpoint                   | Descripción                       | Status Esperado   |
-|--------|----------------------------|-----------------------------------|-------------------|
-| GET    | `api/transactions`         | Obtiene todos los registros.      | `200 OK`          |
-| POST   | `api/transactions`         | Crea una nueva transacción.       | `201 Created`     |
-| DELETE | `api/transactions/{id}`    | Elimina una transacción.          | `204 No Content ` |
-| GET    | `api/transactions/summary` | Retorna el saldo total calculado. | `200 OK`          |
+| Método | Endpoint                    | Descripción                       | Status Esperado   |
+|--------|-----------------------------|-----------------------------------|-------------------|
+| GET    | `/api/transactions`         | Obtiene todos los registros.      | `200 OK`          |
+| POST   | `/api/transactions`         | Crea una nueva transacción.       | `201 Created`     |
+| DELETE | `/api/transactions/{id}`    | Elimina una transacción.          | `204 No Content ` |
+| GET    | `/api/transactions/summary` | Retorna el saldo total calculado. | `200 OK`          |
 
 ---
 ## ✅ Reglas de Negocio y Validaciones
