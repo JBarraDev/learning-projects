@@ -63,4 +63,14 @@ public class TransactionService {
         return new TransactionSummaryDTO(totalBalance, totalIncomes, totalExpenses);
     }
 
+    @Transactional(readOnly = true)
+    public List<TransactionResponseDTO> findByType(TransactionType type) {
+        List<Transaction> transactions = transactionRepository.findAll();
+
+        return transactions.stream()
+                .filter(t -> t.getTransactionType() == type)
+                .map(transactionMapper::toResponseDTO)
+                .collect(Collectors.toList());
+    }
+
 }

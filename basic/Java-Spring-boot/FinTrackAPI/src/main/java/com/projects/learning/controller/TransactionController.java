@@ -1,5 +1,6 @@
 package com.projects.learning.controller;
 
+import com.projects.learning.domain.TransactionType;
 import com.projects.learning.dto.TransactionRequestDTO;
 import com.projects.learning.dto.TransactionResponseDTO;
 import com.projects.learning.dto.TransactionSummaryDTO;
@@ -38,6 +39,11 @@ public class TransactionController {
     @GetMapping("/summary")
     public ResponseEntity<TransactionSummaryDTO> getSummary() {
         return ResponseEntity.ok(transactionService.calculateSummary());
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<TransactionResponseDTO>> findByType(@RequestParam TransactionType type) {
+        return ResponseEntity.ok(transactionService.findByType(type));
     }
 
 }
