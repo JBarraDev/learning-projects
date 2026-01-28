@@ -45,6 +45,10 @@ Este es el primer proyecto del nivel **Basic** en mi roadmap de aprendizaje.
 | Eliminar | `DELETE` | `/api/transactions/{id}`    | Borra un registro por su ID.       |
 | Resumen  | `GET`    | `/api/transactions/summary` | Muestra el saldo total acumulado.  |
 
+### 📖 Documentación Interactiva
+Una vez que la aplicación esté en marcha, puedes explorar y probar todos los endpoints desde la interfaz visual de **Swagger UI**:
+👉 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
 ### 📝 Ejemplo de JSON para POST (Crear Transacción)
 
 ```json
@@ -52,7 +56,7 @@ Este es el primer proyecto del nivel **Basic** en mi roadmap de aprendizaje.
   "description": "Sueldo mensual",
   "amount": 2500.00,
   "date": "2024-03-01",
-  "type": "INCOME",
+  "TransactionType": "INCOME",
   "category": "Trabajo"
 }
 ```
@@ -71,13 +75,15 @@ Este es el primer proyecto del nivel **Basic** en mi roadmap de aprendizaje.
 Para probar la API usamos **Postman**
 
 ---
-🧠 Aprendizajes Clave
-En este proyecto he puesto en práctica:
+🧠## 🧠 Aprendizajes Clave
+En este proyecto he consolidado conceptos fundamentales de desarrollo backend:
 
-- [ ] Estructura de capas (Controller -> Service -> Repository).
-- [ ] Manejo de tipos de datos financieros con `BigDecimal`.
-- [ ] Validaciones de Jakarta Bean Validation (`@Positive`, `@NotBlank`).
-- [ ] Gestión de excepciones personalizadas para errores 404.
+- ✅ **Arquitectura de capas:** Separación clara de responsabilidades (Controller, Service, Repository).
+- ✅ **Mapeo de objetos (MapStruct):** Implementación de DTOs para proteger la integridad de las entidades de base de datos.
+- ✅ **Precisión financiera:** Uso de `BigDecimal` para evitar errores de redondeo en cálculos monetarios.
+- ✅ **Validaciones robustas:** Uso de Jakarta Bean Validation para asegurar que los datos de entrada son correctos antes de procesarlos.
+- ✅ **Testing Unitario:** Pruebas de lógica de negocio utilizando **Mockito** para simular comportamientos del repositorio.
+- ✅ **Documentación Automática:** Integración de Swagger UI para facilitar las pruebas de los endpoints.
 
 ---
 ## 💡 Un último detalle
