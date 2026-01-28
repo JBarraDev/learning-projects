@@ -15,6 +15,7 @@ import java.time.LocalDate;
 public class TransactionRequestDTO {
 
     @NotBlank(message = "La descripción es obligatoria")
+    @Size(max = 100, message = "La descripción no puede superar los 100 caracteres.")
     private String description;
 
     @NotNull(message = "La cantidad no puede ser nula")
