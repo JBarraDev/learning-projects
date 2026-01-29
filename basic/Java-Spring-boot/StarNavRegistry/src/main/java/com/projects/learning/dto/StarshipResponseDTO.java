@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class StarShipResponseDTO {
+public class StarshipResponseDTO {
 
     private String name;
     private String model;
