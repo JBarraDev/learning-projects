@@ -1,0 +1,33 @@
+package com.projects.learning.dto;
+
+import com.projects.learning.domain.ShipStatus;
+import jakarta.validation.constraints.*;
+
+import java.time.LocalDate;
+
+public class StarshipRequestDTO {
+
+    @NotNull(message = "El nombre es obligatorio.")
+    private String name;
+
+    @NotNull(message = "El modelo es obligatorio.")
+    private String model;
+
+    @NotNull
+    @Min(value = 1, message = "La capacidad debe ser al menos de 1.")
+    private Integer crewCapacity;
+
+    @NotNull(message = "El estado de la nave es obligatorio.")
+    private ShipStatus status;
+
+    @NotBlank
+    @Pattern(
+            regexp = "^Sector-[0-9]+[A-Z]$",
+            message = "Formato inválido. Use 'Sector-X' (ej: Sector-7G)"
+    )
+    private String sector;
+
+    @PastOrPresent(message = "La fecha no puede ser posterior a hoy.")
+    private LocalDate lastMaintenance;
+
+}
