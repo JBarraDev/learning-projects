@@ -37,7 +37,7 @@ public class StarshipController {
     }
 
     @PutMapping("{id}/status")
-    ResponseEntity<StarshipResponseDTO> updateStarshipStatus(@Valid @PathVariable Long id, @RequestBody StatusUpdateDTO status){
+    ResponseEntity<StarshipResponseDTO> updateStarshipStatus(@PathVariable Long id, @Valid @RequestBody StatusUpdateDTO status){
         return ResponseEntity.ok(starshipService.updateStatus(id, status));
     }
 

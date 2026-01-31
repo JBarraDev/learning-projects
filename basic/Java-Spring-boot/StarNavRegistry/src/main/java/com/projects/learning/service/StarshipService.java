@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
@@ -38,7 +39,7 @@ public class StarshipService {
     public StarshipResponseDTO save(StarshipRequestDTO starship) {
         Starship entity = starshipMapper.toEntity(starship);
 
-        long yearsSinceMaintenance = ChronoUnit.YEARS.between(entity.getLastMaintenance(), java.time.LocalDate.now());
+        long yearsSinceMaintenance = ChronoUnit.YEARS.between(entity.getLastMaintenance(), LocalDate.now());
         if (yearsSinceMaintenance > 2) {
             entity.setStatus(ShipStatus.UNDER_REPAIR);
         }

@@ -13,10 +13,10 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class StarshipRequestDTO {
 
-    @NotNull(message = "El nombre es obligatorio.")
+    @NotBlank(message = "El nombre es obligatorio.")
     private String name;
 
-    @NotNull(message = "El modelo es obligatorio.")
+    @NotBlank(message = "El modelo es obligatorio.")
     private String model;
 
     @NotNull

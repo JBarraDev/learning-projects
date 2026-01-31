@@ -1,6 +1,5 @@
 package com.projects.learning.dto;
 
-import com.projects.learning.domain.Starship;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
