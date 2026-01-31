@@ -22,8 +22,8 @@ public class StarshipController {
     }
 
     @GetMapping
-    ResponseEntity<List<StarshipResponseDTO>> getAllStarship(){
-        return ResponseEntity.ok(starshipService.findAll());
+    public ResponseEntity<List<StarshipResponseDTO>> getAllStarships(@RequestParam(required = false) String quadrant) {
+        return ResponseEntity.ok(starshipService.findAll(quadrant));
     }
 
     @GetMapping("/{id}")

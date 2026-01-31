@@ -25,8 +25,14 @@ public class StarshipService {
     private final StarshipMapper starshipMapper;
 
     @Transactional(readOnly = true)
-    public List<StarshipResponseDTO> findAll() {
-        return starshipRepository.findAll().stream()
+    public List<StarshipResponseDTO> findAll(String quadrant) {
+        List<Starship> ships;
+        if (quadrant != null && !quadrant.isBlank()) {
+            ships = starshipRepository.findByCurrentQuadrant(quadrant);
+        } else {
+            ships = starshipRepository.findAll();
+        }
+        return ships.stream()
                 .map(starshipMapper::toResponseDto)
                 .toList();
     }
