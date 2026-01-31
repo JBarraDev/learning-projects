@@ -1,14 +1,12 @@
 package com.projects.learning.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
 
 @Entity
-@Getter
-@Setter
+@Data
 public class Starship {
 
     @Id
