@@ -14,6 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class StarshipResponseDTO {
 
+    private Long id;
     private String name;
     private String model;
     private Integer crewCapacity;
