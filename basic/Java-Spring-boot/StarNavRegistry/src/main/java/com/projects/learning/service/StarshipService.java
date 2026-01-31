@@ -83,6 +83,13 @@ public class StarshipService {
                 .orElseThrow(() -> new ResourceNotFoundException("La nave con ID " + id + " no existe en nuestros registros."));
     }
 
+    @Transactional
+    public StarshipResponseDTO decommissionStarship(Long id) {
+        Starship entity = findStarshipById(id);
+        entity.setStatus(ShipStatus.DECOMMISSIONED);
+        return starshipMapper.toResponseDto(entity);
+    }
+
     // Métodos auxiliares
     // Porcentaje de naves operativas
     private Integer getPercentOperativesShips(List<Starship> starships) {

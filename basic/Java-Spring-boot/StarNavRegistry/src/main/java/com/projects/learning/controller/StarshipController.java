@@ -46,4 +46,9 @@ public class StarshipController {
         return ResponseEntity.ok(starshipService.getStats());
     }
 
+    @DeleteMapping("/{id}")
+    ResponseEntity<StarshipResponseDTO> decommissionStarship(@PathVariable Long id){
+        return ResponseEntity.ok(starshipService.decommissionStarship(id));
+    }
+
 }
