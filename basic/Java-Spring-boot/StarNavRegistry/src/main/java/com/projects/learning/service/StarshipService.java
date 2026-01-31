@@ -6,6 +6,7 @@ import com.projects.learning.dto.StarshipRequestDTO;
 import com.projects.learning.dto.StarshipResponseDTO;
 import com.projects.learning.dto.StarshipStatsResponseDTO;
 import com.projects.learning.dto.StatusUpdateDTO;
+import com.projects.learning.exception.ResourceNotFoundException;
 import com.projects.learning.mapper.StarshipMapper;
 import com.projects.learning.repository.StarshipRepository;
 import lombok.AllArgsConstructor;
@@ -72,7 +73,8 @@ public class StarshipService {
     }
 
     private Starship findStarshipById(Long id) {
-        return starshipRepository.findById(id).orElse(null);
+        return starshipRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("La nave con ID " + id + " no existe en nuestros registros."));
     }
 
     // Métodos auxiliares
