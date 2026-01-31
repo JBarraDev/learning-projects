@@ -5,12 +5,14 @@ import com.projects.learning.domain.Starship;
 import com.projects.learning.dto.StarshipRequestDTO;
 import com.projects.learning.dto.StarshipResponseDTO;
 import com.projects.learning.dto.StarshipStatsResponseDTO;
+import com.projects.learning.dto.StatusUpdateDTO;
 import com.projects.learning.mapper.StarshipMapper;
 import com.projects.learning.repository.StarshipRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -35,13 +37,19 @@ public class StarshipService {
     @Transactional
     public StarshipResponseDTO save(StarshipRequestDTO starship) {
         Starship entity = starshipMapper.toEntity(starship);
+
+        long yearsSinceMaintenance = ChronoUnit.YEARS.between(entity.getLastMaintenance(), java.time.LocalDate.now());
+        if (yearsSinceMaintenance > 2) {
+            entity.setStatus(ShipStatus.UNDER_REPAIR);
+        }
+
         return starshipMapper.toResponseDto(starshipRepository.save(entity));
     }
 
     @Transactional
-    public StarshipResponseDTO updateStatus(Long id, ShipStatus status) {
+    public StarshipResponseDTO updateStatus(Long id, StatusUpdateDTO status) {
         Starship entity = findStarshipById(id);
-        entity.setStatus(status);
+        entity.setStatus(status.getStatus());
         return starshipMapper.toResponseDto(entity);
     }
 
@@ -49,7 +57,17 @@ public class StarshipService {
     public StarshipStatsResponseDTO getStats() {
         List<Starship> starships = starshipRepository.findAll();
 
-        return new StarshipStatsResponseDTO(starships.size(),getPercentOperativesShips(starships), findStarshipByCrewCapacity(starships));
+        if (starships.isEmpty()) {
+            return new StarshipStatsResponseDTO(0, 0, null);
+        }
+
+        int total = starships.size();
+        int percent = getPercentOperativesShips(starships);
+        List<StarshipResponseDTO> topShips = findStarshipByCrewCapacity(starships).stream()
+                .map(starshipMapper::toResponseDto)
+                .toList();
+
+        return new StarshipStatsResponseDTO(total,percent, topShips);
     }
 
     private Starship findStarshipById(Long id) {
@@ -59,11 +77,13 @@ public class StarshipService {
     // Métodos auxiliares
     // Porcentaje de naves operativas
     private Integer getPercentOperativesShips(List<Starship> starships) {
+        if (starships.isEmpty()) return 0;
+
         long operationalShips = starships.stream()
                 .filter(starship -> starship.getStatus() == ShipStatus.OPERATIONAL)
                 .count();
 
-        return (int) ((double)operationalShips / starships.size())*100;
+        return (int) (((double)operationalShips / starships.size())*100);
     }
 
     // Mayor capacidad de tripulación
