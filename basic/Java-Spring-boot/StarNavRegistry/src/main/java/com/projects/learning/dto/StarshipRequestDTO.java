@@ -2,9 +2,15 @@ package com.projects.learning.dto;
 
 import com.projects.learning.domain.ShipStatus;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class StarshipRequestDTO {
 
     @NotNull(message = "El nombre es obligatorio.")
@@ -25,7 +31,7 @@ public class StarshipRequestDTO {
             regexp = "^Sector-[0-9]+[A-Z]$",
             message = "Formato inválido. Use 'Sector-X' (ej: Sector-7G)"
     )
-    private String sector;
+    private String currentQuadrant;
 
     @PastOrPresent(message = "La fecha no puede ser posterior a hoy.")
     private LocalDate lastMaintenance;
